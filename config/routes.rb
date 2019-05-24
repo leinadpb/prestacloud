@@ -17,10 +17,14 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   namespace :api do
+
     namespace :v1 do
-      namespace :client do
-        get '/', to: 'clients#all'
-      end
+
+      get '/', to: 'test#secured'
+      get '/unsecured', to: 'test#unsecured'
+
+
+
     end
   end
 end
