@@ -5,7 +5,7 @@ class Api::V1::TestController < ApplicationController
   def secured
     render json: {
         message: 'works!',
-        user: current_user
+        user: current_user.sanitized_info
     }, :status => :ok
   end
 
@@ -13,6 +13,14 @@ class Api::V1::TestController < ApplicationController
     render json: {
         message: 'works!',
         user: nil
+    }, :status => :ok
+  end
+
+  def append_role
+    current_user.add_role :admin
+    render json: {
+        message: 'works!',
+        user: current_user.sanitized_info
     }, :status => :ok
   end
 

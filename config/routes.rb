@@ -22,8 +22,7 @@ Rails.application.routes.draw do
 
       get '/', to: 'test#secured'
       get '/unsecured', to: 'test#unsecured'
-
-
+      get '/add', to: 'test#append_role'
 
     end
   end

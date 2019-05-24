@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_24_161311) do
+ActiveRecord::Schema.define(version: 2019_05_24_202833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2019_05_24_161311) do
     t.boolean "payed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "payment_receipt_id"
+    t.index ["payment_receipt_id"], name: "index_accounts_receivables_on_payment_receipt_id"
   end
 
   create_table "article_states", force: :cascade do |t|
@@ -31,12 +33,24 @@ ActiveRecord::Schema.define(version: 2019_05_24_161311) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "article_types", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "frecuency_id"
+    t.index ["frecuency_id"], name: "index_article_types_on_frecuency_id"
+  end
+
   create_table "articles", force: :cascade do |t|
     t.string "description"
     t.decimal "real_price", precision: 7, scale: 2
     t.decimal "agreement_price", precision: 7, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "article_state_id"
+    t.bigint "article_type_id"
+    t.index ["article_state_id"], name: "index_articles_on_article_state_id"
+    t.index ["article_type_id"], name: "index_articles_on_article_type_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -73,6 +87,12 @@ ActiveRecord::Schema.define(version: 2019_05_24_161311) do
     t.decimal "tax", precision: 7, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "client_id"
+    t.bigint "user_id"
+    t.bigint "loan_detail_id"
+    t.index ["client_id"], name: "index_loans_on_client_id"
+    t.index ["loan_detail_id"], name: "index_loans_on_loan_detail_id"
+    t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
   create_table "log_articles", force: :cascade do |t|
@@ -80,6 +100,8 @@ ActiveRecord::Schema.define(version: 2019_05_24_161311) do
     t.integer "next_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "article_id"
+    t.index ["article_id"], name: "index_log_articles_on_article_id"
   end
 
   create_table "payment_receipt_details", force: :cascade do |t|
@@ -92,6 +114,18 @@ ActiveRecord::Schema.define(version: 2019_05_24_161311) do
     t.decimal "amount", precision: 7, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "payment_receipt_detail_id"
+    t.index ["payment_receipt_detail_id"], name: "index_payment_receipts_on_payment_receipt_detail_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "sell_details", force: :cascade do |t|
@@ -118,4 +152,21 @@ ActiveRecord::Schema.define(version: 2019_05_24_161311) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
+  end
+
+  add_foreign_key "accounts_receivables", "payment_receipts"
+  add_foreign_key "article_types", "frecuencies"
+  add_foreign_key "articles", "article_states"
+  add_foreign_key "articles", "article_types"
+  add_foreign_key "loans", "clients"
+  add_foreign_key "loans", "loan_details"
+  add_foreign_key "loans", "users"
+  add_foreign_key "log_articles", "articles"
+  add_foreign_key "payment_receipts", "payment_receipt_details"
 end
