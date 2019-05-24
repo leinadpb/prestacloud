@@ -1,0 +1,2 @@
+class ArticleState < ApplicationRecord
+end

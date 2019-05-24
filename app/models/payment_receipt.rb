@@ -1,0 +1,2 @@
+class PaymentReceipt < ApplicationRecord
+end

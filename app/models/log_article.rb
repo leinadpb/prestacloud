@@ -1,0 +1,2 @@
+class LogArticle < ApplicationRecord
+end

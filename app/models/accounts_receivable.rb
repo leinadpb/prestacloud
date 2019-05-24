@@ -1,0 +1,2 @@
+class AccountsReceivable < ApplicationRecord
+end
