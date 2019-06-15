@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2b4c364-3476-4518-b460-abfa6f2da714" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/models/loan.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/loan.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/loan_state.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/loan_state.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/integration/client_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/integration/client_spec.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -20,7 +19,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/loan.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
@@ -47,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/integration/client_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="26" column="42" lean-forward="true" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+            <state relative-caret-position="215">
+              <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -171,9 +170,9 @@
         <option value="$PROJECT_DIR$/db/migrate/20190615211423_add_exp_date_to_loan_quotes.rb" />
         <option value="$PROJECT_DIR$/app/services/loans_service.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/client/clients_controller.rb" />
-        <option value="$PROJECT_DIR$/spec/integration/client_spec.rb" />
         <option value="$PROJECT_DIR$/app/models/loan_state.rb" />
         <option value="$PROJECT_DIR$/app/models/loan.rb" />
+        <option value="$PROJECT_DIR$/spec/integration/client_spec.rb" />
       </list>
     </option>
   </component>
@@ -262,6 +261,12 @@
               <item name="prestacloud" type="b2602c69:ProjectViewProjectNode" />
               <item name="prestacloud" type="462c0819:PsiDirectoryNode" />
               <item name="spec" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="prestacloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="prestacloud" type="462c0819:PsiDirectoryNode" />
+              <item name="spec" type="462c0819:PsiDirectoryNode" />
+              <item name="integration" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -383,12 +388,12 @@
       <updated>1558712005020</updated>
       <workItem from="1558712009520" duration="5516000" />
       <workItem from="1558726828623" duration="6121000" />
-      <workItem from="1560604078880" duration="16167000" />
+      <workItem from="1560604078880" duration="16263000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27804000" />
+    <option name="totallyTimeSpent" value="27900000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -726,13 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/integration/client_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="26" column="42" lean-forward="true" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/release-tasks.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -758,6 +756,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/integration/client_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
         </state>
       </provider>
     </entry>

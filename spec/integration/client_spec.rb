@@ -14,7 +14,7 @@ describe 'Clients endpoints' do
               last_name: { type: :string },
               goverment_id: { type: :string },
               phone: { type: :string },
-              birthdate: { type: :date }
+              birthdate: { type: :datetime }
           },
           required: [ 'goverment_id', 'first_name', 'last_name' ]
       }
