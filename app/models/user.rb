@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   has_one :business
 
+  has_one_attached :profile_picture
+
   def assign_default_role
     add_role(:user) if roles.blank?
   end
