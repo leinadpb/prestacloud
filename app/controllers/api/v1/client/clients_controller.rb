@@ -4,7 +4,7 @@ class Api::V1::Client::ClientsController < ApplicationController
     client = ::ClientsService.create(create_client_params)
     render json: {
         client: client
-    }, :status => :ok
+    }, :status => :created
   end
 
 

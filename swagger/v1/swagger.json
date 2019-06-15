@@ -5,5 +5,55 @@
     "version": "v1"
   },
   "paths": {
+    "api/v1/client": {
+      "post": {
+        "summary": "Create client",
+        "tags": [
+          "Client"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "client",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "goverment_id": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "birthdate": {
+                  "type": "date"
+                }
+              },
+              "required": [
+                "goverment_id",
+                "first_name",
+                "last_name"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "client created"
+          },
+          "422": {
+            "description": "invalid request"
+          }
+        }
+      }
+    }
   }
 }
