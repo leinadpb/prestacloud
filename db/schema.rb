@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_15_211423) do
+ActiveRecord::Schema.define(version: 2019_06_15_221717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 2019_06_15_211423) do
     t.decimal "appraise", precision: 10, scale: 2
     t.string "observations"
     t.bigint "loan_payment_frecuency_id"
+    t.decimal "amount_appraise", precision: 10, scale: 2
     t.index ["client_id"], name: "index_loans_on_client_id"
     t.index ["loan_category_id"], name: "index_loans_on_loan_category_id"
     t.index ["loan_detail_id"], name: "index_loans_on_loan_detail_id"

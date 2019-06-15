@@ -2,7 +2,6 @@ module LoansService
   class << self
     def create(loan, employee)
       ::Loan.create!(
-          amount: loan[:amount_to_pay],
           loan_category_id: loan[:category_id],
           appraise: loan[:appraise],
           observations: loan[:observations],
@@ -15,8 +14,9 @@ module LoansService
 
     def calculate_quotes(loan)
       total = ::Article.where(loan_id: loan[:id]).map(&:agreement_price).sum
+      total_appraise = ::Article.where(loan_id: loan[:id]).map(&:real_price).sum
 
-      update_loan_total(loan, total)
+      update_loan_total(loan, total, total_appraise)
       payment_frecuency = ::LoanPaymentFrecuency.find(loan[:loan_payment_frecuency_id])
       frecuency_weeks = payment_frecuency[:value]
 
@@ -29,8 +29,8 @@ module LoansService
       ::LoanQuote.create!(quotes)
     end
 
-    def update_loan_total(loan, total)
-      ::Loan.find(loan[:id]).update!(amount: total)
+    def update_loan_total(loan, total, total_appraise)
+      ::Loan.find(loan[:id]).update!(amount: total, amount_appraise: total_appraise)
     end
   end
 end

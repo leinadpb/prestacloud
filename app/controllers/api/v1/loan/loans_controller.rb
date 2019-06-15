@@ -17,6 +17,13 @@ class Api::V1::Loan::LoansController < ApplicationController
       }, :status => :not_found
     end
 
+  rescue ActiveRecord::RecordInvalid => e
+    if loan.present?
+      loan.destroy!
+    end
+    render json: {
+        error: e
+    }, :status => :unprocessable_entity
 
   end
 
