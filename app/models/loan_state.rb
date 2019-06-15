@@ -1,3 +1,3 @@
 class LoanState < ApplicationRecord
-  belongs_to :loan
+  has_one :loan
 end
