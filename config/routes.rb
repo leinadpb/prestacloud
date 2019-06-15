@@ -24,6 +24,11 @@ Rails.application.routes.draw do
       get '/unsecured', to: 'test#unsecured'
       get '/add', to: 'test#append_role'
 
+      namespace :business do
+        post '/', to: 'business#create'
+        get '/', to: 'business#show'
+      end
+
     end
   end
 end

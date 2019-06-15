@@ -9,15 +9,18 @@ class User < ApplicationRecord
 
   after_create :assign_default_role
 
+  has_one :business
+
   def assign_default_role
-    add_role(:user) if role.blank?
+    add_role(:user) if roles.blank?
   end
 
   def sanitized_info
     {
         id: id,
         email: email,
-        roles: roles.map(&:name)
+        roles: roles.map(&:name),
+        full_name: full_name
     }
   end
 

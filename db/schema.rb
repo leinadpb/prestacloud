@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_24_202833) do
+ActiveRecord::Schema.define(version: 2019_06_15_133451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,19 @@ ActiveRecord::Schema.define(version: 2019_05_24_202833) do
     t.bigint "article_type_id"
     t.index ["article_state_id"], name: "index_articles_on_article_state_id"
     t.index ["article_type_id"], name: "index_articles_on_article_type_id"
+  end
+
+  create_table "businesses", force: :cascade do |t|
+    t.string "name"
+    t.decimal "latitude", precision: 7, scale: 2
+    t.decimal "longitude", precision: 7, scale: 2
+    t.string "address"
+    t.string "phone"
+    t.string "owner"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_businesses_on_user_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -148,6 +161,9 @@ ActiveRecord::Schema.define(version: 2019_05_24_202833) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "business_id"
+    t.string "full_name"
+    t.index ["business_id"], name: "index_users_on_business_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -169,4 +185,5 @@ ActiveRecord::Schema.define(version: 2019_05_24_202833) do
   add_foreign_key "loans", "users"
   add_foreign_key "log_articles", "articles"
   add_foreign_key "payment_receipts", "payment_receipt_details"
+  add_foreign_key "users", "businesses"
 end

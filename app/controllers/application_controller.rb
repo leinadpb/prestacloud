@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::API
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :global_variables
+
+  def global_variables
+    @user = current_user
+  end
 
   def render_resource(resource)
     if resource.errors.empty?

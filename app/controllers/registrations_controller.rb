@@ -2,9 +2,13 @@ class RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
   def create
-    build_resource(sign_up_params)
+    user = ::User.new(sign_up_params)
 
-    resource.save
-    render_resource(resource)
+    user.save
+    render_resource(user)
+  end
+
+  def sign_up_params
+    params.require(:user).permit(:email, :password, :full_name)
   end
 end
