@@ -6,8 +6,35 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-#
-# ARTICLE STATES
+# Frecuencies
+if Frecuency.all.empty?
+  Frecuency.create!([{id: 1, description: 'Semanal', value: 1}])
+end
+
+# Article states
 if ArticleState.all.empty?
   ArticleState.create!([{id: 1, name: 'new'}, {id: 2, name: 'in_use'}, {id: 3, name: 'returned'}, {id: 4, name: 'kept'}])
+end
+
+# Loan categories
+if LoanCategory.all.empty?
+  LoanCategory.create!([{id: 1, name: 'Loan category #1'}, {id: 2, name: 'Loan category #2'}])
+end
+
+# Article types
+if ArticleType.all.empty?
+  ArticleType.create!([
+      {id: 1, description: 'Electrodomesticos', frecuency_id: 1},
+      {id: 2, description: 'Muebles', frecuency_id: 1},
+      {id: 3, description: 'joyas', frecuency_id: 1}])
+end
+
+# Loan states
+if LoanState.all.empty?
+  LoanState.create!([{id: 1, name: 'new'}, {id: 2, name: 'partial_payed'}, {id: 3, name: 'payed'}, {id: 4, name: 'kept'}])
+end
+
+# Loan payment frecuencies
+if LoanPaymentFrecuency.all.empty?
+  LoanPaymentFrecuency.create!([{id: 1, name: 'Semanas', value: 4}, {id: 2, name: 'Semanas', value: 12}, {id: 3, name: 'Mes', value: 12}])
 end

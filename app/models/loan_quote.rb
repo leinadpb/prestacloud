@@ -1,0 +1,2 @@
+class LoanQuote < ApplicationRecord
+end

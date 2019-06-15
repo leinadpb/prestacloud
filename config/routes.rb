@@ -31,6 +31,14 @@ Rails.application.routes.draw do
         get '/', to: 'business#show'
       end
 
+      namespace :loan do
+        post '/', to: 'loans#create'
+      end
+
+      namespace :client do
+        post '/', to: 'clients#create'
+      end
+
     end
   end
 end

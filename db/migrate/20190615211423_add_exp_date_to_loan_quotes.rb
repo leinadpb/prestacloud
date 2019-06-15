@@ -1,0 +1,5 @@
+class AddExpDateToLoanQuotes < ActiveRecord::Migration[5.2]
+  def change
+    add_column :loan_quotes, :expiry_date, :date
+  end
+end

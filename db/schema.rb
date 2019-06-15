@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_15_133451) do
+ActiveRecord::Schema.define(version: 2019_06_15_211423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,8 +49,11 @@ ActiveRecord::Schema.define(version: 2019_06_15_133451) do
     t.datetime "updated_at", null: false
     t.bigint "article_state_id"
     t.bigint "article_type_id"
+    t.string "name"
+    t.bigint "loan_id"
     t.index ["article_state_id"], name: "index_articles_on_article_state_id"
     t.index ["article_type_id"], name: "index_articles_on_article_type_id"
+    t.index ["loan_id"], name: "index_articles_on_loan_id"
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -88,8 +91,41 @@ ActiveRecord::Schema.define(version: 2019_06_15_133451) do
     t.index ["jti"], name: "index_jwt_blacklist_on_jti"
   end
 
+  create_table "loan_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "loan_details", force: :cascade do |t|
     t.date "expiration_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "loan_payment_frecuencies", force: :cascade do |t|
+    t.integer "value"
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "loan_quotes", force: :cascade do |t|
+    t.decimal "amount", precision: 10, scale: 2
+    t.string "state"
+    t.string "payment_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "loan_id"
+    t.date "expiry_date"
+    t.index ["loan_id"], name: "index_loan_quotes_on_loan_id"
+  end
+
+  create_table "loan_states", force: :cascade do |t|
+    t.string "description"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -103,8 +139,16 @@ ActiveRecord::Schema.define(version: 2019_06_15_133451) do
     t.bigint "client_id"
     t.bigint "user_id"
     t.bigint "loan_detail_id"
+    t.bigint "loan_states_id"
+    t.bigint "loan_category_id"
+    t.decimal "appraise", precision: 10, scale: 2
+    t.string "observations"
+    t.bigint "loan_payment_frecuency_id"
     t.index ["client_id"], name: "index_loans_on_client_id"
+    t.index ["loan_category_id"], name: "index_loans_on_loan_category_id"
     t.index ["loan_detail_id"], name: "index_loans_on_loan_detail_id"
+    t.index ["loan_payment_frecuency_id"], name: "index_loans_on_loan_payment_frecuency_id"
+    t.index ["loan_states_id"], name: "index_loans_on_loan_states_id"
     t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
@@ -153,6 +197,11 @@ ActiveRecord::Schema.define(version: 2019_06_15_133451) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "states", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -180,8 +229,13 @@ ActiveRecord::Schema.define(version: 2019_06_15_133451) do
   add_foreign_key "article_types", "frecuencies"
   add_foreign_key "articles", "article_states"
   add_foreign_key "articles", "article_types"
+  add_foreign_key "articles", "loans"
+  add_foreign_key "loan_quotes", "loans"
   add_foreign_key "loans", "clients"
+  add_foreign_key "loans", "loan_categories"
   add_foreign_key "loans", "loan_details"
+  add_foreign_key "loans", "loan_payment_frecuencies"
+  add_foreign_key "loans", "loan_states", column: "loan_states_id"
   add_foreign_key "loans", "users"
   add_foreign_key "log_articles", "articles"
   add_foreign_key "payment_receipts", "payment_receipt_details"

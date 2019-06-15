@@ -26,11 +26,13 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="addressable (v2.6.0, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="arel (v9.0.0, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.12, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.3, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v2.0.1, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.4, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.3, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dry-auto_inject (v0.6.0, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dry-configurable (v0.8.2, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dry-container (v0.7.0, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
@@ -38,6 +40,7 @@
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.8.0, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v0.4.2, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.6.0, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="json-schema (v2.8.1, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jwt (v2.1.0, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="listen (v3.1.5, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="loofah (v2.2.3, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
@@ -60,6 +63,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.10.0, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v2.4.1, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rolify (v5.2.0, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-rails (v3.8.2, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby_dep (v1.5.0, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="spring (v2.0.2, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="spring-watcher-listen (v2.0.1, Remote: ruby-2.6.1p33 ( revision 66950)-p33) [gem]" level="application" />
