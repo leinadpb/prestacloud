@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
+  # POST /api/sign_up
   def create
     user = ::User.new(sign_up_params)
 
