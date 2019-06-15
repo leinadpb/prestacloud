@@ -6,10 +6,6 @@ class Api::V1::Loan::LoansController < ApplicationController
     articles = ArticlesService.create_many(create_articles_params, loan)
     quotes = ::LoansService.calculate_quotes(loan)
 
-    puts '>>>>>>>>'
-    puts articles.inspect
-    puts quotes.inspect
-
     if !articles.empty?
       render json: {
           loan: loan.sanitazed_info,
@@ -22,6 +18,12 @@ class Api::V1::Loan::LoansController < ApplicationController
     end
 
 
+  end
+
+  def show
+    render json: {
+        loans: ::Loan.all.map(&:sanitazed_info)
+    }, :status => :ok
   end
 
 

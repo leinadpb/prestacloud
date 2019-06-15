@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
       namespace :loan do
         post '/', to: 'loans#create'
+        get '/', to: 'loans#show'
       end
 
       namespace :client do
