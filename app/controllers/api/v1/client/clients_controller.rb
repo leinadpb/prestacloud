@@ -7,6 +7,13 @@ class Api::V1::Client::ClientsController < ApplicationController
     }, :status => :created
   end
 
+  def show
+    clients = ::ClientsService.get_all_by_user(@user)
+    render json: {
+        clients: clients
+    }, :status => :ok
+  end
+
 
   private
 

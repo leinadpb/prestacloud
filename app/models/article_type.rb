@@ -4,8 +4,7 @@ class ArticleType < ApplicationRecord
   def sanitazed_info
     {
         id: id,
-        description: description,
-        frecuency: ::Frecuency.find(frecuency_id)
+        description: description
     }
   end
 end

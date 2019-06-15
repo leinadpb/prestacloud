@@ -8,5 +8,10 @@ module ClientsService
           last_name: client[:last_name],
           birthdate: client[:birthdate])
     end
+
+    def get_all_by_user(user)
+      clients = ::Client.where(id: user[:id]).map(&:sanitazed_info)
+      clients
+    end
   end
 end

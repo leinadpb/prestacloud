@@ -20,7 +20,10 @@ class Article < ApplicationRecord
         name: name,
         description: description,
         category_type: ::ArticleType.find(article_type_id).sanitazed_info,
-        weight: 0
+        weight: 0,
+        real_price: real_price,
+        agreement_price: agreement_price,
+        state: ArticleState.find(article_state_id)
     }
   end
 

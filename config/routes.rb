@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
       namespace :client do
         post '/', to: 'clients#create'
+        get '/', to: 'clients#show'
       end
 
     end
