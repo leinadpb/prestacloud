@@ -300,7 +300,7 @@ Devise.setup do |config|
   config.navigational_formats = []
 
   config.jwt do |jwt|
-    jwt.secret = 'change-me-toenv-secret'
+    jwt.secret = ENV['DEVISE_SECRET']
     jwt.dispatch_requests = [
         ['POST', %r{^/login$}]
     ]

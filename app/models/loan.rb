@@ -2,6 +2,7 @@ class Loan < ApplicationRecord
   has_one :loan_detail
   has_one :loan_state
   has_one :loan_payment_frecuency
+  belongs_to :client
 
   def sanitazed_info
     {

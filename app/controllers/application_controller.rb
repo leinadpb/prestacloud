@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::API
 
-  before_action :authenticate_user!, :global_variables
+  before_action :global_variables
 
   def global_variables
-    @user = current_user
+    @user = current_user.present? ? current_user : nil
   end
 
   def render_resource(resource)

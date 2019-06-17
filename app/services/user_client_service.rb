@@ -4,8 +4,9 @@ module UserClientService
       existing_user = ::UserClient.find_by(email: user_client[:email])
 
       if !existing_user.present?
-        user_client = ::UserClient.new(:email => user_client[:email], :password => user_client[:password], :full_name => user_client[:full_name], :goverment_id => user_client[:goverment_id])
+        user_client = ::UserClient.new(:email => user_client[:email], :password => user_client[:password], :password_confirmation => user_client[:password], :full_name => user_client[:full_name], :goverment_id => user_client[:goverment_id])
         user_client.save!
+        user_client.skip_confirmation!
         return user_client
       end
 

@@ -54,6 +54,17 @@ Rails.application.routes.draw do
         get '/', to: 'clients#show'
       end
 
+
+      # Routes for client_users
+
+      namespace :client_users do
+
+        namespace :loan_user do
+          get '/', to: 'loan_users#show'
+        end
+
+      end
+
     end
   end
 end

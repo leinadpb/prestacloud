@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  include Accessible
-  skip_before_action :check_user, only: :destroy
-  include ActionController::Cookies
-
   respond_to :json
+  include Accessible
 
+  skip_before_action :check_user, only: :destroy
 
   private
 
   def respond_with(resource, _opts = {})
+    puts resource.inspect
     render json: resource
   end
 
