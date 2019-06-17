@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_15_224129) do
+ActiveRecord::Schema.define(version: 2019_06_17_204815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2019_06_15_224129) do
     t.date "birthdate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
   end
 
   create_table "frecuencies", force: :cascade do |t|
@@ -158,7 +159,6 @@ ActiveRecord::Schema.define(version: 2019_06_15_224129) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "client_id"
-    t.bigint "user_id"
     t.bigint "loan_detail_id"
     t.bigint "loan_states_id"
     t.bigint "loan_category_id"
@@ -166,6 +166,7 @@ ActiveRecord::Schema.define(version: 2019_06_15_224129) do
     t.string "observations"
     t.bigint "loan_payment_frecuency_id"
     t.decimal "amount_appraise", precision: 10, scale: 2
+    t.bigint "user_id"
     t.index ["client_id"], name: "index_loans_on_client_id"
     t.index ["loan_category_id"], name: "index_loans_on_loan_category_id"
     t.index ["loan_detail_id"], name: "index_loans_on_loan_detail_id"
@@ -222,6 +223,20 @@ ActiveRecord::Schema.define(version: 2019_06_15_224129) do
   create_table "states", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_clients", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "goverment_id"
+    t.string "full_name"
+    t.index ["email"], name: "index_user_clients_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_user_clients_on_reset_password_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|

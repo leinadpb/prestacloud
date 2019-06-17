@@ -1,11 +1,11 @@
 module LoansService
   class << self
-    def create(loan, employee)
+    def create(loan, client, employee)
       ::Loan.create!(
           loan_category_id: loan[:category_id],
           appraise: loan[:appraise],
           observations: loan[:observations],
-          client_id: loan[:client_id],
+          client_id: client[:id],
           user_id: employee[:id],
           loan_states_id: 1,
           loan_payment_frecuency_id: loan[:loan_payment_frecuency_id])

@@ -1,19 +1,32 @@
 
 Rails.application.routes.draw do
+
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_for :users,
-             path: 'api',
+             path: 'users',
              path_names: {
                  sign_in: 'login',
                  sign_out: 'logout',
                  registration: 'sign_up'
              },
              controllers: {
-                 sessions: 'sessions',
-                 registrations: 'registrations'
+                 sessions: 'users/sessions',
+                 registrations: 'users/registrations'
+             }, defaults: { format: :json }
+
+  devise_for :user_clients,
+             path: 'clients',
+             path_names: {
+                 sign_in: 'login',
+                 sign_out: 'logout',
+                 registration: 'sign_up'
+             },
+             controllers: {
+                 sessions: 'user_clients/sessions',
+                 registrations: 'user_clients/registrations'
              }, defaults: { format: :json }
 
   mount ActionCable.server => '/cable'

@@ -2,22 +2,36 @@ class Api::V1::Loan::LoansController < ApplicationController
 
   def create
 
-    loan = ::LoansService.create(create_loan_params, @user)
-    articles = ArticlesService.create_many(create_articles_params, loan)
-    quotes = ::LoansService.calculate_quotes(loan)
+    client = ::Client.find(create_loan_params[:client_id])
+    if client.present?
+      loan = ::LoansService.create(create_loan_params, client, @user)
+      articles = ArticlesService.create_many(create_articles_params, loan)
+      quotes = ::LoansService.calculate_quotes(loan)
 
-    if !articles.empty?
-      render json: {
-          loan: loan.sanitazed_info,
-          quotes: quotes
-      }
+      user_client = ::UserClientService.create_new_safe({email: client[:email], password: client[:goverment_id], goverment_id: client[:goverment_id], full_name: "#{client[:first_name]} #{client[:last_name]}"})
+
+      if !articles.empty?
+        render json: {
+            loan: loan.sanitazed_info,
+            quotes: quotes,
+            user_client: user_client
+        }
+      else
+        render json: {
+            message: "Couldn't create associated articles to this loan, try again"
+        }, :status => :not_found
+      end
     else
-      render json: {
-          message: "Couldn't create associated articles to this loan, try again"
-      }, :status => :not_found
+      render json: nil, :status => :bad_request
     end
 
   rescue ActiveRecord::RecordInvalid => e
+    if quotes.present?
+      quotes.destroy!
+    end
+    if articles.present?
+      articles.destroy!
+    end
     if loan.present?
       loan.destroy!
     end
