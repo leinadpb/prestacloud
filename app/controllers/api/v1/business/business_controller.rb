@@ -3,7 +3,7 @@ class Api::V1::Business::BusinessController < ApplicationController
   include BusinessService
 
   def show
-    business = ::Business.find_by(user_id: @user[:id])
+    business = ::Business.find_by(user_id: current_user[:id])
     if business.present?
       render json: {
           business: business.sanitazed_info
@@ -16,7 +16,7 @@ class Api::V1::Business::BusinessController < ApplicationController
   end
 
   def create
-    business = BusinessService.create(create_params, @user)
+    business = BusinessService.create(create_params, current_user)
     if business.save
       render json: {
           business: business.sanitazed_info

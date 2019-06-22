@@ -2,7 +2,7 @@ class Api::V1::User::UsersController < ApplicationController
 
   def show
     render json: {
-        user: @user
+        user: current_user
     }, :status => :ok
   end
 

@@ -4,7 +4,7 @@ class Api::V1::Loan::LoansController < ApplicationController
 
     client = ::Client.find(create_loan_params[:client_id])
     if client.present?
-      loan = ::LoansService.create(create_loan_params, client, @user)
+      loan = ::LoansService.create(create_loan_params, client, current_user)
       articles = ArticlesService.create_many(create_articles_params, loan)
       quotes = ::LoansService.calculate_quotes(loan)
 
