@@ -18,7 +18,7 @@ end
 
 # Loan categories
 if LoanCategory.all.empty?
-  LoanCategory.create!([{id: 1, name: 'Loan category #1'}, {id: 2, name: 'Loan category #2'}])
+  LoanCategory.create!([{id: 1, name: 'Personal'}, {id: 2, name: 'Estudio'}, {id: 3, name: 'Hipotecario'}])
 end
 
 # Article types
@@ -36,5 +36,5 @@ end
 
 # Loan payment frecuencies
 if LoanPaymentFrecuency.all.empty?
-  LoanPaymentFrecuency.create!([{id: 1, name: 'Semanas', value: 4}, {id: 2, name: 'Semanas', value: 12}, {id: 3, name: 'Mes', value: 12}])
+  LoanPaymentFrecuency.create!([{id: 1, name: 'Semanas', value: 4, description: 'Mensual'}, {id: 2, name: 'Semanas', value: 12, description: 'Trimestral'}, {id: 3, name: 'Mes', value: 12, description: 'Anual'}])
 end

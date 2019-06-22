@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_17_204815) do
+ActiveRecord::Schema.define(version: 2019_06_22_033549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(version: 2019_06_17_204815) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "client_id"
+    t.bigint "user_id"
     t.bigint "loan_detail_id"
     t.bigint "loan_states_id"
     t.bigint "loan_category_id"
@@ -166,7 +167,7 @@ ActiveRecord::Schema.define(version: 2019_06_17_204815) do
     t.string "observations"
     t.bigint "loan_payment_frecuency_id"
     t.decimal "amount_appraise", precision: 10, scale: 2
-    t.bigint "user_id"
+    t.integer "loan_duration"
     t.index ["client_id"], name: "index_loans_on_client_id"
     t.index ["loan_category_id"], name: "index_loans_on_loan_category_id"
     t.index ["loan_detail_id"], name: "index_loans_on_loan_detail_id"

@@ -12,7 +12,7 @@ class Api::V1::Loan::LoansController < ApplicationController
 
       if !articles.empty?
         render json: {
-            loan: loan.sanitazed_info,
+            loan: ::Loan.find(loan[:id]).sanitazed_info,
             quotes: quotes,
             user_client: user_client
         }
@@ -47,11 +47,17 @@ class Api::V1::Loan::LoansController < ApplicationController
     }, :status => :ok
   end
 
+  def options
+    render json: {
+        categories: LoanCategory.all
+    }
+  end
+
 
   private
 
     def create_loan_params
-      params.require(:loan).permit(:amount_to_pay, :category_id, :client_id, :appraise, :observations, :loan_payment_frecuency_id)
+      params.require(:loan).permit(:amount_to_pay, :category_id, :client_id, :appraise, :observations, :loan_payment_frecuency_id, :loan_duration)
     end
 
     def create_articles_params

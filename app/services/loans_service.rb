@@ -8,6 +8,8 @@ module LoansService
           client_id: client[:id],
           user_id: employee[:id],
           loan_states_id: 1,
+          tax: 0.18,
+          loan_duration: loan[:loan_duration],
           loan_payment_frecuency_id: loan[:loan_payment_frecuency_id])
     end
 
@@ -20,10 +22,14 @@ module LoansService
       payment_frecuency = ::LoanPaymentFrecuency.find(loan[:loan_payment_frecuency_id])
       frecuency_weeks = payment_frecuency[:value]
 
-      quote_price = (total / frecuency_weeks).ceil
+      total_quotes = (loan[:loan_duration].to_i  * 4) / frecuency_weeks
+
+      puts total_quotes
+
+      quote_price = ( (total + (total * loan[:tax].to_f) ) / total_quotes).ceil
       quotes = []
-      frecuency_weeks.times do |week|
-        exp_days = (week + 1) * 7
+      total_quotes.times do |quote|
+        exp_days = (quote + 1) * (frecuency_weeks * 7)
         quotes.push({amount: quote_price, state: 'new', payment_method: nil, loan_id: loan[:id], expiry_date: exp_days.days.from_now})
       end
       ::LoanQuote.create!(quotes)

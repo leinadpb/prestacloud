@@ -6,6 +6,7 @@ module ClientsService
           phone: client[:phone],
           first_name: client[:first_name],
           last_name: client[:last_name],
+          email: client[:email],
           birthdate: client[:birthdate])
     end
 

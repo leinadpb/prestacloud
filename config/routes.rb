@@ -39,6 +39,14 @@ Rails.application.routes.draw do
       get '/unsecured', to: 'test#unsecured'
       get '/add', to: 'test#append_role'
 
+      namespace :user do
+        get '/', to: 'users#show'
+      end
+
+      namespace :dashboard do
+        get '/', to: 'dashboard#get_data'
+      end
+
       namespace :business do
         post '/', to: 'business#create'
         get '/', to: 'business#show'
@@ -47,11 +55,18 @@ Rails.application.routes.draw do
       namespace :loan do
         post '/', to: 'loans#create'
         get '/', to: 'loans#show'
+        get '/options', to: 'loans#options'
+        get '/table_data', to: 'loans#table_data'
+      end
+
+      namespace :quote do
+        get '/', to: 'quotes#show'
       end
 
       namespace :client do
         post '/', to: 'clients#create'
         get '/', to: 'clients#show'
+        get '/search', to: 'clients#search_by'
       end
 
 
