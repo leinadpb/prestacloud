@@ -6,7 +6,7 @@ module LoansService
           appraise: loan[:appraise],
           observations: loan[:observations],
           client_id: client[:id],
-          user_id: employee[:id],
+          user_id: 1,
           loan_states_id: 1,
           tax: 0.18,
           loan_duration: loan[:loan_duration],
