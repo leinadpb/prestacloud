@@ -9,6 +9,7 @@ class Api::V1::Client::ClientsController < ApplicationController
 
   def show
     clients = ::Client.all
+
     render json: {
         clients: clients.map(&:sanitazed_info)
     }, :status => :ok
