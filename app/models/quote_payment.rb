@@ -1,0 +1,2 @@
+class QuotePayment < ApplicationRecord
+end

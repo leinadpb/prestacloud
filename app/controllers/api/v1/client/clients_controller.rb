@@ -27,6 +27,13 @@ class Api::V1::Client::ClientsController < ApplicationController
     end
   end
 
+  def show_loans
+    client = ::Client.find_by(:goverment_id => params[:goverment_id])
+    render json: {
+      client: client.sanitazed_info
+    }
+  end
+
 
   private
 

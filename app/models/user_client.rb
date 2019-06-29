@@ -12,4 +12,8 @@ class UserClient < ApplicationRecord
     client
   end
 
+  def get_stripe_id
+    stripe_id
+  end
+
 end

@@ -6,7 +6,8 @@ class LoanQuote < ApplicationRecord
         amount: amount,
         state: state,
         payment_method: payment_method,
-        expiry_date: expiry_date
+        expiry_date: expiry_date,
+        created_at: created_at
     }
   end
 end

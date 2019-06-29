@@ -39,6 +39,10 @@ Rails.application.routes.draw do
       get '/unsecured', to: 'test#unsecured'
       get '/add', to: 'test#append_role'
 
+      namespace :payment do
+        post '/quote', to: 'payments#pay_quote'
+      end
+
       namespace :user do
         get '/', to: 'users#show'
       end
@@ -67,6 +71,7 @@ Rails.application.routes.draw do
         post '/', to: 'clients#create'
         get '/', to: 'clients#show'
         get '/search', to: 'clients#search_by'
+        get '/loans', to: 'clients#show_loans'
       end
 
 
@@ -76,6 +81,12 @@ Rails.application.routes.draw do
 
         namespace :loan_user do
           get '/', to: 'loan_users#show'
+        end
+
+        namespace :card do
+          post '/', to: 'cards#create_card'
+          post '/create_customer', to: 'cards#add_customer'
+          get '/cards', to: 'cards#get_cards'
         end
 
       end

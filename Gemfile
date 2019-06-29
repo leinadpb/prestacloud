@@ -33,7 +33,9 @@ gem 'rack-cors'
 
 # rolify
 gem 'rolify'
-#
+
+# Stripe
+gem 'stripe'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

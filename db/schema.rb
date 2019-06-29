@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_22_033549) do
+ActiveRecord::Schema.define(version: 2019_06_28_201837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,6 +199,17 @@ ActiveRecord::Schema.define(version: 2019_06_22_033549) do
     t.index ["payment_receipt_detail_id"], name: "index_payment_receipts_on_payment_receipt_detail_id"
   end
 
+  create_table "quote_payments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "loan_quotes_id"
+    t.decimal "amount", precision: 7, scale: 2
+    t.bigint "user_clients_id"
+    t.string "payment_method"
+    t.index ["loan_quotes_id"], name: "index_quote_payments_on_loan_quotes_id"
+    t.index ["user_clients_id"], name: "index_quote_payments_on_user_clients_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -236,6 +247,7 @@ ActiveRecord::Schema.define(version: 2019_06_22_033549) do
     t.datetime "updated_at", null: false
     t.string "goverment_id"
     t.string "full_name"
+    t.string "stripe_id"
     t.index ["email"], name: "index_user_clients_on_email", unique: true
     t.index ["reset_password_token"], name: "index_user_clients_on_reset_password_token", unique: true
   end
@@ -278,5 +290,7 @@ ActiveRecord::Schema.define(version: 2019_06_22_033549) do
   add_foreign_key "loans", "users"
   add_foreign_key "log_articles", "articles"
   add_foreign_key "payment_receipts", "payment_receipt_details"
+  add_foreign_key "quote_payments", "loan_quotes", column: "loan_quotes_id"
+  add_foreign_key "quote_payments", "user_clients", column: "user_clients_id"
   add_foreign_key "users", "businesses"
 end

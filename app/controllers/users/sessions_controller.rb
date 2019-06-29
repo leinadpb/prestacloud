@@ -2,9 +2,6 @@
 
 class Users::SessionsController < Devise::SessionsController
   respond_to :json
-  include Accessible
-
-  skip_before_action :check_user, only: :destroy
 
   private
 
