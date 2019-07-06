@@ -27,4 +27,9 @@ class Article < ApplicationRecord
     }
   end
 
+  def kept_for_store
+    self.article_state_id = 4
+    self.save!
+  end
+
 end

@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
       namespace :payment do
         post '/quote', to: 'payments#pay_quote'
+        post '/loan', to: 'payments#pay_full_loan'
       end
 
       namespace :user do
@@ -72,6 +73,11 @@ Rails.application.routes.draw do
         get '/', to: 'clients#show'
         get '/search', to: 'clients#search_by'
         get '/loans', to: 'clients#show_loans'
+      end
+
+      namespace :article do
+        get '/', to: 'articles#show_for_complete_loans'
+        post '/return', to: 'articles#return_article'
       end
 
 

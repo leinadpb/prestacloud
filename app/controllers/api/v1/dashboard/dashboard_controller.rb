@@ -17,8 +17,10 @@ class Api::V1::Dashboard::DashboardController < ApplicationController
       loans = ::Loan.where('created_at >= ? and created_at <= ?', days_ago, day_ago)
 
       if loans.any?
-        loans.each { |i|
-          @total_income += i[:amount] * i[:tax] + i[:amount]
+        loans.each { |loan|
+          if loan[:status] == "on-time" or loan[:status] == "complete" or loan[:status] == "expired"
+            @total_income += loan[:amount] * loan[:tax]
+          end
         }
       end
 

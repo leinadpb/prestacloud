@@ -10,6 +10,7 @@ module LoansService
           loan_states_id: 1,
           tax: 0.18,
           loan_duration: loan[:loan_duration],
+          status: "open",
           loan_payment_frecuency_id: loan[:loan_payment_frecuency_id])
     end
 
@@ -36,7 +37,7 @@ module LoansService
     end
 
     def update_loan_total(loan, total, total_appraise)
-      ::Loan.find(loan[:id]).update!(amount: total, amount_appraise: total_appraise)
+      ::Loan.find(loan[:id]).update!(amount: total, appraise: total, amount_appraise: total_appraise)
     end
   end
 end
