@@ -39,7 +39,7 @@ class Api::V1::Dashboard::DashboardController < ApplicationController
         total_loans: total_loans,
         total_articles: total_articles,
         day_data_list: day_data_list,
-        income: ::Loan.all.map(&:calculate_cost).sum
+        income: ::Loan.all.map(&:calculate_cost_appraise).sum
 
     }, :status => :ok
 

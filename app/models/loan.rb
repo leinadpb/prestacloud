@@ -5,6 +5,11 @@ class Loan < ApplicationRecord
   belongs_to :client
 
   def calculate_cost
+    cost = (amount * tax) + amount
+    cost
+  end
+
+  def calculate_cost_appraise
     cost = (appraise * tax) + amount
     cost
   end
