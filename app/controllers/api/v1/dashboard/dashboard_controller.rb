@@ -19,7 +19,7 @@ class Api::V1::Dashboard::DashboardController < ApplicationController
       if loans.any?
         loans.each { |loan|
           if loan[:status] == "on-time" or loan[:status] == "complete" or loan[:status] == "expired"
-            @total_income += loan[:amount] * loan[:tax]
+            @total_income += loan[:appraise] * loan[:tax]
           end
         }
       end
