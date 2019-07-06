@@ -132,6 +132,9 @@ class Api::V1::Payment::PaymentsController < ApplicationController
         if loan[:status] == "expired"
           kept_loan_articles(loan)
         end
+        if loan[:status] == "on-time"
+          return_loan_articles(loan)
+        end
         render json: {
             message: 'Succesfull payment',
             loan: loan.sanitazed_info,
@@ -166,6 +169,9 @@ class Api::V1::Payment::PaymentsController < ApplicationController
       if loan[:status] == "expired"
         kept_loan_articles(loan)
       end
+      if loan[:status] == "on-time"
+        return_loan_articles(loan)
+      end
       if charge[:status] == "succeeded"
         render json: {
             loan: loan.sanitazed_info,
@@ -176,9 +182,16 @@ class Api::V1::Payment::PaymentsController < ApplicationController
   end
 
   def kept_loan_articles(loan)
-    loan_articles = ::Article.find_by(:loan_id => loan[:id])
+    loan_articles = ::Article.where(:loan_id => loan[:id])
     loan_articles.each do |article|
       article.kept_for_store
+    end
+  end
+
+  def return_loan_articles(loan)
+    loan_articles = ::Article.where(:loan_id => loan[:id])
+    loan_articles.each do |article|
+      article.return_to_client
     end
   end
 
