@@ -16,7 +16,8 @@ class Api::V1::Payment::PaymentsController < ApplicationController
         if amount <= 0
           render json: { message: "Insufficient funds." }
         end
-        loan[:amount] = loan[:amount] - quote[:amount]
+        loan_amount = loan[:amount] - quote[:amount]
+        loan[:amount] = if loan_amount <= 0 then 0 else loan_amount end
         amount_to_return = execute_quote_payment(quote, "cash", amount, client)
         loan.save!
         verify_loan_complete(loan)
@@ -33,7 +34,8 @@ class Api::V1::Payment::PaymentsController < ApplicationController
              customer: client[:stripe_id],
          })
         if charge[:status] == "succeeded"
-          loan[:amount] = loan[:amount] - quote[:amount]
+          loan_amount = loan[:amount] - quote[:amount]
+          loan[:amount] = if loan_amount <= 0 then 0 else loan_amount end
           execute_quote_payment(quote, "card", quote[:amount], client)
           loan.save!
           verify_loan_complete(loan)
