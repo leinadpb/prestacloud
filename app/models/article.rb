@@ -10,7 +10,10 @@ class Article < ApplicationRecord
         description: description,
         category_type: ::ArticleType.find(article_type_id),
         loan: ::Loan.find(loan_id),
-        weight: 0
+        weight: 0,
+        real_price: real_price,
+        agreement_price: agreement_price,
+        state: ArticleState.find(article_state_id)
     }
   end
 
@@ -27,6 +30,10 @@ class Article < ApplicationRecord
     }
   end
 
+  def return_to_client
+    self.article_state_id = 3
+    self.save!
+  end
   def kept_for_store
     self.article_state_id = 4
     self.save!

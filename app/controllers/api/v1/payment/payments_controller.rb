@@ -67,6 +67,14 @@ class Api::V1::Payment::PaymentsController < ApplicationController
     if complete
       loan[:status] = loan_status
       loan.save!
+      loan_articles = ::Article.where(loan_id: loan[:id])
+      loan_articles.each do |article|
+        if loan_status == "on-time"
+          article.return_to_client
+        else
+          article.kept_for_store
+        end
+      end
     end
   end
 
@@ -151,6 +159,7 @@ class Api::V1::Payment::PaymentsController < ApplicationController
         quote.save!
       end
       loan[:status] = loan_status
+      loan[:amount] = 0
       loan.save!
       if loan[:status] == "expired"
         kept_loan_articles(loan)
@@ -174,4 +183,5 @@ class Api::V1::Payment::PaymentsController < ApplicationController
   def create_quote_payment(quote, quote_amount, client)
     ::QuotePayment.create!(loan_quotes_id: quote[:id], amount: quote_amount, payment_method: quote[:payment_method], user_clients_id: client[:id])
   end
+
 end

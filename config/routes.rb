@@ -78,6 +78,7 @@ Rails.application.routes.draw do
       namespace :article do
         get '/', to: 'articles#show_for_complete_loans'
         post '/return', to: 'articles#return_article'
+        get '/all', to: 'articles#show_all'
       end
 
 

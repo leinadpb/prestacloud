@@ -8,6 +8,13 @@ class Api::V1::Article::ArticlesController < ApplicationController
     }, :status => :ok
   end
 
+  def show_all
+    articles = ::Article.all
+    render json: {
+        articles: articles.map(&:sanitazed_info_with_loan)
+    }, :status => :ok
+  end
+
   def show_for_complete_loans
     client = ::UserClient.find_by(:goverment_id => params[:goverment_id])
     client_loans = ::Loan.find_by(client_id: client[:id])
